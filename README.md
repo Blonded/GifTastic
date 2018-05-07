@@ -1,13 +1,12 @@
 # GifTastic
 GIF generator
-
-
 ** COMING SOON ** 
 
-By using the API Key from Giphy I have created buttons that source the images from Giphy.com to display each time 
-the user clicks the button.
+By using the API Key from Giphy I have created dynamically generated buttons that source the images from Giphy.com to display each time 
+the user clicks the button, with option to add their own button and browse the search engine.
 
-Each click generates a single gif, Each button shows a different 'subject' of Gif's.
+Each click generates a limited 10 gifs [manually] all in which are displayed via 'gif-rating', Each button shows a different 'subject' of Gif's.
+All gif's are animated when you click the image. Clicking again will pause the gif.
 
 // Psuedocode notes put throughout to understand functionality of specific areas of code. //
 
@@ -48,7 +47,7 @@ Sample of code used:
 * [javascript]
 * [jQuery]
 * [bootstrap]
-* [API Key]
+* [JSON - API Key]
 
 ## Authors
 

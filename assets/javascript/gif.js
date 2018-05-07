@@ -5,8 +5,8 @@ var apiKey = "sZR5ZpCqMPKZXVX0X6IphpQPULnfT8eJ";
 
 // create the buttons,
 
-function displayEmotions(){
-    var emotion = $(this).attr()
+function displayEmotions() {
+    var emotion = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         emotion + "&api_key=sZR5ZpCqMPKZXVX0X6IphpQPULnfT8eJ&limit=10";
 // this puts a limit of 10 images to be displayed at once w/ and api key
@@ -14,36 +14,41 @@ function displayEmotions(){
 // create the ajax call using the api key and query url
 $.ajax({
     url: queryURL,
-    method: "GET",
+    method: "GET"
 }).then(function(response){
-
 // dynamically generating a div to hold the 'emotion'
-var emotionDiv = $("<div class = 'emotion'>");
-console.log(response); // to test the response 
+var emotionDiv = $("<div class = 'emotion'>");  
+console.log("response", response)
+var results = response.data;
 
-// var rating = response.rated;
+for (var i = 0; i < results.length; i++) {
+  var gifDiv = $("<div class='item'>");
 
-// generates a p tag to the html -- temporary for testing. 
-// var pOne = $("<p>").text("Rating: " + rating);
+  var rating = results[i].rating;
+
+  var p = $("<p>").text("Rating: " + rating);
+
+  var emotionImg = $("<img>");
+  emotionImg.attr("src", results[i].images.fixed_height.url);
+
+  emotionDiv.prepend(p);
+  emotionDiv.prepend(emotionImg);
+
+  $("#emotions-view").prepend(emotionDiv);
+}
 })
+} 
 
-// //this is appending the result of the p tag variable to the html.
-// $('.emotionDiv').append(pOne);
- } 
-// closes function display emotions
+// closes function display 'emotions'
 
-
-// Function for displaying emotions data
+// Function for displaying 'emotions' data
 function renderButtons() {
-
-    // Deletes the users input before adding new emotions, no repeat buttons
+    // deletes the users input before adding new 'emotions', no repeat buttons
     $("#buttons-view").empty();
 
-    // Looping through the array of emotions
+    // loop through the array
     for (var i = 0; i < emotions.length; i++) {
-
-      // Then dynamicaly generating buttons for each emotion in the array
-      // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+      // Then dynamicaly generating buttons for each 'emotion' in the array
       var newButton = $("<button>");
       // Adding a class of emotions-btn to our button
       newButton.addClass("emotion-btn");
@@ -75,13 +80,6 @@ function renderButtons() {
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
-
-
-
-
-
-
-
 
 
 
