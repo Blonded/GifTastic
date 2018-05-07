@@ -1,0 +1,24 @@
+html, body{
+    background-color: blanchedalmond;
+}
+
+.jumbotron{
+    background-color: peru;
+}
+
+.container{
+    
+}
+
+.prompt{
+    /* float: right; */
+}
+
+.flower{
+    float:right;
+    margin-bottom: 200px;
+}
+
+.emotion-form{
+    float: left;
+}
