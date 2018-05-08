@@ -37,9 +37,7 @@ var p = $("<p>").text("Rating: " + rating);
 // this created a class for the image placement
   var emotionImg = $("<img>");
 
-////
-
-
+// finding the current state of the gifs - to make them pause/start
 emotionImg.attr("src", results[i].images.fixed_height_still.url);
 emotionImg.attr("data-still", results[i].images.fixed_height_still.url);
 emotionImg.attr("data-animate", results[i].images.fixed_height.url);
@@ -47,7 +45,6 @@ emotionImg.attr("data-state", "still");
 emotionImg.attr("class", "gif");
 
 
-////
   // add a source attribute 
   emotionImg.attr("src", results[i].images.fixed_height_still.url);
   // emotionImg.attr("src", results[i].images.fixed_height.url);
@@ -60,15 +57,9 @@ emotionImg.attr("class", "gif");
 
   // prepend the gifs to the emotions view class linking html
   $("#emotions-view").prepend(emotionDiv);
-}
-})
+    }
+  })
 } 
-
-
-
-
-// closes function display 'emotions'
-
 // Function for displaying 'emotions' data
 function renderButtons() {
     // deletes the users input before adding new 'emotions', no repeat buttons
@@ -108,17 +99,18 @@ function renderButtons() {
 
 
 
-  //PAUSE GIFS
+  //PAUSE GIFS on click
 
+  // create new variable and assign it to a function - pause gifs
   var pauseImages = function(){
-    $(".gif").click(function() {
+
+// to stop the page from reloading completely when clicked
       event.preventDefault();
   
-  
+
       var state = $(this).attr("data-state");
-  
-      console.log(state);
-  
+
+  // conditional statement to change still to animate, or animate to still
       if(state === 'still'){
         $(this).attr('src', $(this).attr('data-animate'));
         $(this).attr('data-state', 'animate');
@@ -126,13 +118,11 @@ function renderButtons() {
         $(this).attr('src', $(this).attr('data-still'));
         $(this).attr('data-state', 'still');
       }
-  
-    });
   }
 
-  ///////////
 
-  // Adding a click event listener to all elements with a class of "emotions-btn"
+
+  // Adding a click event listener to all elements with a class of "emotions-btn", and "gif"
   $(document).on("click", ".emotion-btn", displayEmotions);
   
   $(document).on("click", ".gif", pauseImages);
@@ -141,21 +131,5 @@ function renderButtons() {
   renderButtons();
 
 
-
-// have 4/6 pre-existing button options
-    // excited, sad, groovy, accomplished, hungry
-    // WITH PARAMETERS q, limit, rating
-
-        //  with option to take in input from the user
-        // when the user inputs a new emotion, dynamically generate a button to the html
-
-// q :
-// limit : Only allow 10 gifs to be displayed at a time
-// rating : Limit the gif rating to PG/Pg13
-
-// Pause the Gif when it is clicked, and unpause it when it is clicked again. START AS STATIC 
-
-
-// RATING and PAUSING GIFS LAST. 
 
 
