@@ -18,22 +18,36 @@ $.ajax({
 }).then(function(response){
 // dynamically generating a div to hold the 'emotion'
 var emotionDiv = $("<div class = 'emotion'>");  
-console.log("response", response)
+
+// convert the response into a variable
 var results = response.data;
 
+// loop through the results
 for (var i = 0; i < results.length; i++) {
+  
+  // create a variable to hold the items/gifs
   var gifDiv = $("<div class='item'>");
 
+  // create a variavble displaying the rating
   var rating = results[i].rating;
 
-  var p = $("<p>").text("Rating: " + rating);
+  // convert the rating over to the html so it shows on the document
+var p = $("<p>").text("Rating: " + rating);
 
+
+// this created a class for the image placement
   var emotionImg = $("<img>");
+
+  // add a source attribute 
   emotionImg.attr("src", results[i].images.fixed_height.url);
 
+  // prepend the results to the p tag
   emotionDiv.prepend(p);
+
+  // prepend the result to the html
   emotionDiv.prepend(emotionImg);
 
+  // prepend the gifs to the emotions view class linking html
   $("#emotions-view").prepend(emotionDiv);
 }
 })
@@ -80,8 +94,6 @@ function renderButtons() {
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
-
-
 
 
 // have 4/6 pre-existing button options
