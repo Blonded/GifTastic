@@ -95,7 +95,6 @@ emotionImg.attr("class", "gif");
   })
 } 
 
-                .......  
 
 '''''
 
