@@ -34,12 +34,23 @@ for (var i = 0; i < results.length; i++) {
   // convert the rating over to the html so it shows on the document
 var p = $("<p>").text("Rating: " + rating);
 
-
 // this created a class for the image placement
   var emotionImg = $("<img>");
 
+////
+
+
+emotionImg.attr("src", results[i].images.fixed_height_still.url);
+emotionImg.attr("data-still", results[i].images.fixed_height_still.url);
+emotionImg.attr("data-animate", results[i].images.fixed_height.url);
+emotionImg.attr("data-state", "still");
+emotionImg.attr("class", "gif");
+
+
+////
   // add a source attribute 
-  emotionImg.attr("src", results[i].images.fixed_height.url);
+  emotionImg.attr("src", results[i].images.fixed_height_still.url);
+  // emotionImg.attr("src", results[i].images.fixed_height.url);
 
   // prepend the results to the p tag
   emotionDiv.prepend(p);
@@ -52,6 +63,9 @@ var p = $("<p>").text("Rating: " + rating);
 }
 })
 } 
+
+
+
 
 // closes function display 'emotions'
 
@@ -89,11 +103,43 @@ function renderButtons() {
     renderButtons();
   });
 
+  //////////
+
+
+
+
+  //PAUSE GIFS
+
+  var pauseImages = function(){
+    $(".gif").click(function() {
+      event.preventDefault();
+  
+  
+      var state = $(this).attr("data-state");
+  
+      console.log(state);
+  
+      if(state === 'still'){
+        $(this).attr('src', $(this).attr('data-animate'));
+        $(this).attr('data-state', 'animate');
+      }else if(state === 'animate'){
+        $(this).attr('src', $(this).attr('data-still'));
+        $(this).attr('data-state', 'still');
+      }
+  
+    });
+  }
+
+  ///////////
+
   // Adding a click event listener to all elements with a class of "emotions-btn"
   $(document).on("click", ".emotion-btn", displayEmotions);
+  
+  $(document).on("click", ".gif", pauseImages);
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
+
 
 
 // have 4/6 pre-existing button options
