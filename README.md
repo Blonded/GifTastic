@@ -24,7 +24,7 @@ images      /folder
 LICENSE
 README.md
 
-** coming soon
+
 <img src="assets/images/demophoto.jpg" alt="Demo-photo">
 
 Sample of code used:
@@ -32,7 +32,7 @@ Sample of code used:
 Javascript, dynamically generating classes through js - and running code through the AJAX call, while including the api key in order to 
 collect the information to display the GIF's wanted. 
 
-// Psuedocode is included in the example.
+
 
 ''''''
      
@@ -43,35 +43,28 @@ collect the information to display the GIF's wanted.
     var emotion = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         emotion + "&api_key=sZR5ZpCqMPKZXVX0X6IphpQPULnfT8eJ&limit=10";
-// this puts a limit of 10 images to be displayed at once w/ and api key
 
-// create the ajax call using the api key and query url
 $.ajax({
     url: queryURL,
     method: "GET"
 }).then(function(response){
-// dynamically generating a div to hold the 'emotion'
+
 var emotionDiv = $("<div class = 'emotion'>");  
 
-// convert the response into a variable
+
 var results = response.data;
 
-// loop through the results
+
 for (var i = 0; i < results.length; i++) {
-  
-  // create a variable to hold the items/gifs
+
   var gifDiv = $("<div class='item'>");
 
-  // create a variavble displaying the rating
   var rating = results[i].rating;
 
-  // convert the rating over to the html so it shows on the document
 var p = $("<p>").text("Rating: " + rating);
 
-// this created a class for the image placement
   var emotionImg = $("<img>");
 
-// finding the current state of the gifs - to make them pause/start
 emotionImg.attr("src", results[i].images.fixed_height_still.url);
 emotionImg.attr("data-still", results[i].images.fixed_height_still.url);
 emotionImg.attr("data-animate", results[i].images.fixed_height.url);
@@ -79,17 +72,12 @@ emotionImg.attr("data-state", "still");
 emotionImg.attr("class", "gif");
 
 
-  // add a source attribute 
   emotionImg.attr("src", results[i].images.fixed_height_still.url);
-  // emotionImg.attr("src", results[i].images.fixed_height.url);
 
-  // prepend the results to the p tag
   emotionDiv.prepend(p);
 
-  // prepend the result to the html
   emotionDiv.prepend(emotionImg);
 
-  // prepend the gifs to the emotions view class linking html
   $("#emotions-view").prepend(emotionDiv);
     }
   })
